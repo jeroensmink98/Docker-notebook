@@ -1,0 +1,19 @@
+# Specify Verison
+version: '3'
+
+# Specify services
+services:
+    notebook:
+        build:
+            context: .
+        container_name: notebook
+        ports:
+            - "8888:8888"
+        volumes:
+            - ./src/:/notebooks
+
+        # Run this command on container startup: Start notebook service
+        command: start-notebook.sh --NotebookApp.notebook_dir=/notebooks
+        environment:
+            - JUPYTER_ENABLE_LAB=yes
+            - JUPYTER_TOKEN=notebook
